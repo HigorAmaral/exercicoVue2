@@ -28,7 +28,8 @@
 </script>
 
 <template>
-  <div class="correcao">
+  <div class="exercicio">
+    <h1>Exercício</h1>
     <div class="form">
       <h2>Formulário de cidades</h2>
       <input type="text" v-model="cidade" />
@@ -70,7 +71,7 @@
     background-color: #0056b3;
   }
 
-  .correcao {
+  .exercicio {
     text-align: center;
     display: flex;
     flex-direction: column;
