@@ -1,125 +1,166 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const name = ref(``);
-const email = ref(``);
-const senha = ref(``);
-const confirmaSenha = ref(``); 
-const nascimento = ref(``);
-const endereco = ref(``);
-const cidade = ref(``);
-const estado = ref(``);
-const hobbies = ref(``);
-const linguagens = ref(``);
-const biografia = ref(``);
+const perfil = ref({
+  nome: '',
+  email: '',
+  senha: '',
+  nascimento: '',
+  endereco: '',
+  estado: '',
+  linguagem: '',
+  biografia: '',
+  hobbies: '',
+  cidade: '',
+})
+const confrimarsenha = ref("")
+const listaEstados = ref([
+  { 'nome': 'Acre', 'sigla': 'AC-' },
+  { 'nome': 'Alagoas', 'sigla': 'AL-' },
+  { 'nome': 'Amapá', 'sigla': 'AP-' },
+  { 'nome': 'Amazonas', 'sigla': 'AM-' },
+  { 'nome': 'Bahia', 'sigla': 'BA-' },
+  { 'nome': 'Ceará', 'sigla': 'CE-' },
+  { 'nome': 'Distrito Federal', 'sigla': 'DF-' },
+  { 'nome': 'Espírito Santo', 'sigla': 'ES-' },
+  { 'nome': 'Goiás', 'sigla': 'GO-' },
+  { 'nome': 'Maranhão', 'sigla': 'MA-' },
+  { 'nome': 'Mato Grosso', 'sigla': 'MT-' },
+  { 'nome': 'Mato Grosso do Sul', 'sigla': 'MS-' },
+  { 'nome': 'Minas Gerais', 'sigla': 'MG-' },
+  { 'nome': 'Pará', 'sigla': 'PA-' },
+  { 'nome': 'Paraíba', 'sigla': 'PB-' },
+  { 'nome': 'Paraná', 'sigla': 'PR-' },
+  { 'nome': 'Pernambuco', 'sigla': 'PE-' },
+  { 'nome': 'Piauí', 'sigla': 'PI-' },
+  { 'nome': 'Rio de Janeiro', 'sigla': 'RJ-' },
+  { 'nome': 'Rio Grande do Norte', 'sigla': 'RN-' },
+  { 'nome': 'Rio Grande do Sul', 'sigla': 'RS-' },
+  { 'nome': 'Rondônia', 'sigla': 'RO-' },
+  { 'nome': 'Roraima', 'sigla': 'RR-' },
+  { 'nome': 'Santa Catarina', 'sigla': 'SC-' },
+  { 'nome': 'São Paulo', 'sigla': 'SP-' },
+  { 'nome': 'Sergipe', 'sigla': 'SE-' },
+  { 'nome': 'Tocantins', 'sigla': 'TO-' },
+])
 
 </script>
 
 <template>
-  <div class="form">
-    <h1>Formulário</h1>
-    <label for="nome">Informe seu nome</label>
-    <input type="text" name="nome" id="nome" placeholder="Nome" required />
+  <main>
+        <div class="Base">
+          <form>
+            <div class="tittle">
+              <h1>Registro de Usuario</h1>
+            </div>
+            <div class="usuario-informações">
+              <div class="usuario-nome above-inputs">
+                <input v-model="perfil.nome" placeholder="Informe seu nome" type="text" required>
+              </div>
+              <div class="usuario-email above-inputs">
+                <input v-model="perfil.email" placeholder="Informe seu email" type="email" required>
+              </div>
+              <div class="usuario-senha above-inputs">
+                <input v-model="perfil.senha" placeholder="Informe sua senha" type="senha" required>
+              </div>
+              <div class="usuario-verify-senha above-inputs">
+                <input v-model="confrimarsenha" placeholder="Confirme a sua senha" type="senha" required>
+                <p v-if="perfil.senha !== confrimarsenha">Incorreto!</p>
+              </div>
+              <div class="usuario-nascimento above-inputs">
+                <input v-model="perfil.nascimento" placeholder="Qual é sua data de nascimento" type="date" required>
+              </div>
 
-    <label for="email">Informe o seu email</label>
-    <input type="email" v-model="email" placeholder="Email" required />
+              <div class="usuario-endereco above-inputs">
+                <input class="buttons-f1" v-model="perfil.endereco" placeholder="Qual o seu endereço?" required>
+              </div>
 
-    <label for="senha">Informe a sua senha</label>
-    <input type="password" v-model="senha" placeholder="Senha" required />
-
-    <label for="confirme a senha">Confirme a sua senha</label>
-    <input type="password" v-model="confirmaSenha" placeholder="Confirme a senha" required />
-
-    <label for="nascimento">Data de Nascimento</label>
-    <input type="date" v-model="nascimento" placeholder="Data de nascimento" required />
-
-    <label for="endereco">Informe o seu Endereço</label>
-    <input type="text" v-model="endereco" placeholder="Endereço" required />
-
-    <label for="cidade">Informe a sua cidade</label>
-    <input type="text" v-model="cidade" placeholder="Cidade" required />
-
-    <label for="estado">Informe o seu Estado</label>
-    <select id="estado" name="estado">
-      <option value="AC">Acre</option>
-      <option value="AL">Alagoas</option>
-      <option value="AP">Amapá</option>
-      <option value="AM">Amazonas</option>
-      <option value="BA">Bahia</option>
-      <option value="CE">Ceará</option>
-      <option value="DF">Distrito Federal</option>
-      <option value="ES">Espírito Santo</option>
-      <option value="GO">Goiás</option>
-      <option value="MA">Maranhão</option>
-      <option value="MT">Mato Grosso</option>
-      <option value="MS">Mato Grosso do Sul</option>
-      <option value="MG">Minas Gerais</option>
-      <option value="PA">Pará</option>
-      <option value="PB">Paraíba</option>
-      <option value="PR">Paraná</option>
-      <option value="PE">Pernambuco</option>
-      <option value="PI">Piauí</option>
-      <option value="RJ">Rio de Janeiro</option>
-      <option value="RN">Rio Grande do Norte</option>
-      <option value="RS">Rio Grande do Sul</option>
-      <option value="RO">Rondônia</option>
-      <option value="RR">Roraima</option>
-      <option value="SC">Santa Catarina</option>
-      <option value="SP">São Paulo</option>
-      <option value="SE">Sergipe</option>
-      <option value="TO">Tocantins</option>
-    </select>
-
-    <label for="hobbies">Informe o seu Hobbies</label>
-    <input type="text" v-model="hobbies" placeholder="Hobbies" />
-
-    <label for="suas Linguagens De Prog...">Informe a sua línguagen de programação</label>
-    <input type="text" v-model="linguagens" placeholder="Suas Linguagens De Prog..." />
-
-    <label for="biografia">Faça sua Biografia</label>
-    <textarea name="biografia" id="biografia" cols="30" rows="20" maxlength="5000"></textarea>
-
-    <button id="botaoEnviar">Enviar</button>
-  </div>
-
-  <div class="informacoes">
-    <h1>informacoes do Usuário</h1>
-  </div>
+              <div class="usuario-city above-inputs">
+                <input v-model="perfil.cidade" placeholder="Qual sua cidade?" type="text" required>
+              </div>
+              <div class="usuario-liguagem above-inputs">
+                <input v-model="perfil.linguagem" placeholder="Qual sua liguagem de programação?" type="text" required>
+              </div>
+              <div class="usuario-hobbies">
+                <input v-model="perfil.hobbies" placeholder="Qual seu hobbie?" type="text" required>
+              </div>
+              <div class="usuario-estados">
+                <select v-model="perfil.estado">
+                  <option v-for="(value, index) of listaEstados" :key="index">{{ value.sigla
+                    }}{{ value.nome }}</option>
+                </select>
+              </div>
+              <div class="biografia-graphy">
+                <textarea v-model="perfil.biografia" nome="biografia" cols="40" rows="8" required>biografia</textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+        <section>
+        <div class="resultado">
+          <h2>Dados do Usuario</h2>
+          <p>Nome : {{ perfil.nome }}</p>
+          <p>email : {{ perfil.email }}</p>
+          <p>nascimento : {{ perfil.nascimento }}</p>
+          <p>endereço : {{ perfil.endereco }}</p>
+          <p>Estado : {{ perfil.estado }}</p>
+          <p>Linguagem : {{ perfil.linguagem }}</p>
+          <p>biografia : {{ perfil.biografia }}</p>
+          <p>Hobbies : {{ perfil.hobbies }}</p>
+          <p>Cidade : {{ perfil.cidade }}</p>
+          <p>email : {{ perfil.email }}</p>
+        </div>
+        </section>
+  </main>
 </template>
 
-<style>
-.form {
+<style scoped>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  position: relative;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.Base {
+  backdrop-filter: Base(5px);
+}
+
+.Base,
+.resultado {
+  width: 45vw;
+  min-height: 70vh;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.usuario-informações input,
+usuario-estados select {
+  border-radius: 5px;
+  border: 2px solid rgb(5, 43, 25);
+  background-color: rgba(26, 78, 22, 0);
+}
+
+.usuario-informações {
   display: flex;
   flex-direction: column;
-  background-color: rgb(235, 230, 171);
-  height: 50%;
-  width: 50%;
+  justify-content: center;
   align-items: center;
-  margin: 0 auto;
 }
 
-button {
-  background-color: rgb(52, 52, 255);
-  margin-top: 20px;
+.above-inputs {
+  margin: 5px 0px 8px 0px;
 }
 
-input {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  height: 80%;
-  width: 80%;
-  border-radius: 15px;
-}
-
-select {
-  height: 80%;
-  width: 80%;
-  border-radius: 15px;
-}
-
-textarea {
-  height: 80%;
-  width: 80%;
-  border-radius: 15px;
+.tittle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
