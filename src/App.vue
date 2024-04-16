@@ -43,76 +43,79 @@ const listaEstados = ref([
   { 'nome': 'Sergipe', 'sigla': 'SE-' },
   { 'nome': 'Tocantins', 'sigla': 'TO-' },
 ])
+const mostrarresultado = ref(false)
+
 
 </script>
 
+
 <template>
   <main>
-        <div class="Base">
-          <form>
-            <div class="tittle">
-              <h1>Registro de Usuario</h1>
-            </div>
-            <div class="usuario-informações">
-              <div class="usuario-nome above-inputs">
-                <input v-model="perfil.nome" placeholder="Informe seu nome" type="text" required>
-              </div>
-              <div class="usuario-email above-inputs">
-                <input v-model="perfil.email" placeholder="Informe seu email" type="email" required>
-              </div>
-              <div class="usuario-senha above-inputs">
-                <input v-model="perfil.senha" placeholder="Informe sua senha" type="senha" required>
-              </div>
-              <div class="usuario-verify-senha above-inputs">
-                <input v-model="confrimarsenha" placeholder="Confirme a sua senha" type="senha" required>
-                <p v-if="perfil.senha !== confrimarsenha">Incorreto!</p>
-              </div>
-              <div class="usuario-nascimento above-inputs">
-                <input v-model="perfil.nascimento" placeholder="Qual é sua data de nascimento" type="date" required>
-              </div>
-
-              <div class="usuario-endereco above-inputs">
-                <input class="buttons-f1" v-model="perfil.endereco" placeholder="Qual o seu endereço?" required>
-              </div>
-
-              <div class="usuario-city above-inputs">
-                <input v-model="perfil.cidade" placeholder="Qual sua cidade?" type="text" required>
-              </div>
-              <div class="usuario-liguagem above-inputs">
-                <input v-model="perfil.linguagem" placeholder="Qual sua liguagem de programação?" type="text" required>
-              </div>
-              <div class="usuario-hobbies">
-                <input v-model="perfil.hobbies" placeholder="Qual seu hobbie?" type="text" required>
-              </div>
-              <div class="usuario-estados">
-                <select v-model="perfil.estado">
-                  <option v-for="(value, index) of listaEstados" :key="index">{{ value.sigla
-                    }}{{ value.nome }}</option>
-                </select>
-              </div>
-              <div class="biografia-graphy">
-                <textarea v-model="perfil.biografia" nome="biografia" cols="40" rows="8" required>biografia</textarea>
-              </div>
-            </div>
-          </form>
+      <div v-if ="!mostrarresultado" class="formulario">
+        <div class="tittle">
+          <h1>Registro de Usuario</h1>
         </div>
-        <section>
-        <div class="resultado">
-          <h2>Dados do Usuario</h2>
-          <p>Nome : {{ perfil.nome }}</p>
-          <p>email : {{ perfil.email }}</p>
-          <p>nascimento : {{ perfil.nascimento }}</p>
-          <p>endereço : {{ perfil.endereco }}</p>
-          <p>Estado : {{ perfil.estado }}</p>
-          <p>Linguagem : {{ perfil.linguagem }}</p>
-          <p>biografia : {{ perfil.biografia }}</p>
-          <p>Hobbies : {{ perfil.hobbies }}</p>
-          <p>Cidade : {{ perfil.cidade }}</p>
-          <p>email : {{ perfil.email }}</p>
+        <div class="usuario-informações">
+          <div class="usuario-nome above-inputs">
+            <input v-model="perfil.nome" placeholder="Informe seu nome" type="text" required>
+          </div>
+          <div class="usuario-email above-inputs">
+            <input v-model="perfil.email" placeholder="Informe seu email" type="email" required>
+          </div>
+          <div class="usuario-senha above-inputs">
+            <input v-model="perfil.senha" placeholder="Informe sua senha" type="senha" required>
+          </div>
+          <div class="usuario-verify-senha above-inputs">
+            <input v-model="confrimarsenha" placeholder="Confirme a sua senha" type="senha" required>
+            <p v-if="perfil.senha !== confrimarsenha">Incorreto!</p>
+          </div>
+          <div class="usuario-nascimento above-inputs">
+            <input v-model="perfil.nascimento" placeholder="Qual é sua data de nascimento" type="date" required>
+          </div>
+
+          <div class="usuario-endereco above-inputs">
+            <input class="buttons-f1" v-model="perfil.endereco" placeholder="Qual o seu endereço?" required>
+          </div>
+
+          <div class="usuario-city above-inputs">
+            <input v-model="perfil.cidade" placeholder="Qual sua cidade?" type="text" required>
+          </div>
+          <div class="usuario-liguagem above-inputs">
+            <input v-model="perfil.linguagem" placeholder="Qual sua liguagem de programação?" type="text" required>
+          </div>
+          <div class="usuario-hobbies">
+            <input v-model="perfil.hobbies" placeholder="Qual seu hobbie?" type="text" required>
+          </div>
+          <div class="usuario-estados">
+            <select v-model="perfil.estado">
+              <option v-for="(value, index) of listaEstados" :key="index">{{ value.sigla
+                }}{{ value.nome }}</option>
+            </select>
+          </div>
+          <div class="biografia-graphy">
+            <textarea v-model="perfil.biografia" nome="biografia" cols="40" rows="8" required>biografia</textarea>
+          </div>
         </div>
-        </section>
+    </div>
+    <button @click="mostrarresultado= !mostrarresultado" >Perfil</button>
+    <section>
+      <div v-if="mostrarresultado" class="resultado">
+        <h2>Dados do Usuario</h2>
+        <p>Nome : {{ perfil.nome }}</p>
+        <p>email : {{ perfil.email }}</p>
+        <p>nascimento : {{ perfil.nascimento }}</p>
+        <p>endereço : {{ perfil.endereco }}</p>
+        <p>Estado : {{ perfil.estado }}</p>
+        <p>Linguagem : {{ perfil.linguagem }}</p>
+        <p>biografia : {{ perfil.biografia }}</p>
+        <p>Hobbies : {{ perfil.hobbies }}</p>
+        <p>Cidade : {{ perfil.cidade }}</p>
+        <p>email : {{ perfil.email }}</p>
+      </div>
+    </section>
   </main>
 </template>
+
 
 <style scoped>
 * {
@@ -128,16 +131,33 @@ main {
   justify-content: center;
 }
 
-.Base {
-  backdrop-filter: Base(5px);
+.formulario {
+  backdrop-filter: formulario(5px);
 }
 
-.Base,
+.btn {
+  background-color: black;
+  color: white;
+}
+
+.active {
+  border: solid 10px black;
+}
+
+.formulario{
+  width: 45vw;
+  min-height: 70vh;
+  border-radius: 20px;
+  padding: 20px;
+}
+
 .resultado {
   width: 45vw;
   min-height: 70vh;
   border-radius: 20px;
   padding: 20px;
+  background-color: black;
+  color: white;
 }
 
 .usuario-informações input,
@@ -160,7 +180,9 @@ usuario-estados select {
 
 .tittle {
   display: flex;
-  justify-content: center;
+  justify-content: center;  
   align-items: center;
+  background-color: black;
+  color: white;
 }
 </style>
