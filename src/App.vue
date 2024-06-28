@@ -97,7 +97,6 @@ const mostrarresultado = ref(false)
           </div>
         </div>
     </div>
-    <button @click="mostrarresultado= !mostrarresultado" >Perfil</button>
     <section>
       <div v-if="mostrarresultado" class="resultado">
         <h2>Dados do Usuario</h2>
@@ -113,6 +112,7 @@ const mostrarresultado = ref(false)
         <p>email : {{ perfil.email }}</p>
       </div>
     </section>
+    <button class="btn btn-white" @click="mostrarresultado= !mostrarresultado" >Perfil</button>
   </main>
 </template>
 
@@ -124,6 +124,10 @@ const mostrarresultado = ref(false)
   box-sizing: border-box;
 }
 
+input{
+  border: color(white);
+  color: rgb(248, 248, 248);
+}
 main {
   position: relative;
   align-items: center;
@@ -136,7 +140,7 @@ main {
 }
 
 .btn {
-  background-color: black;
+  background-color: rgb(22, 12, 12);
   color: white;
 }
 
@@ -149,6 +153,9 @@ main {
   min-height: 70vh;
   border-radius: 20px;
   padding: 20px;
+  color: white;
+  border: color(white);
+  background-color: rgb(0, 0, 0);
 }
 
 .resultado {
@@ -185,4 +192,9 @@ usuario-estados select {
   background-color: black;
   color: white;
 }
+
+::placeholder{
+  color: white;
+}
+
 </style>
