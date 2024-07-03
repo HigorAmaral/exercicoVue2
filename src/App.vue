@@ -51,50 +51,63 @@ const mostrarresultado = ref(false)
 
 <template>
   <main>
+  <div class="tudo">
       <div v-if ="!mostrarresultado" class="formulario">
         <div class="tittle">
           <h1>Registro de Usuario</h1>
         </div>
         <div class="usuario-informações">
+          <label for="perfil.nome">Informe seu nome:</label>
           <div class="usuario-nome above-inputs">
-            <input v-model="perfil.nome" placeholder="Informe seu nome" type="text" required>
+            <input v-model="perfil.nome" type="text" min="3" max="20" required>
           </div>
+          <label for="perfil.email">Informe seu e-mail:</label>
           <div class="usuario-email above-inputs">
-            <input v-model="perfil.email" placeholder="Informe seu email" type="email" required>
+            <input v-model="perfil.email" type="email" required>
           </div>
+          <label for="perfil.senha">Informe sua senha:</label>
           <div class="usuario-senha above-inputs">
-            <input v-model="perfil.senha" placeholder="Informe sua senha" type="senha" required>
+            <input v-model="perfil.senha" type="password" required>
           </div>
+          <label for="confirmarsenha">Confirme sua senha:</label>
           <div class="usuario-verify-senha above-inputs">
-            <input v-model="confrimarsenha" placeholder="Confirme a sua senha" type="senha" required>
+            <input v-model="confrimarsenha" type="password" required>
             <p v-if="perfil.senha !== confrimarsenha">Incorreto!</p>
           </div>
+          <label for="perfil.nascimento">Informe sua data de nascimento:</label>
           <div class="usuario-nascimento above-inputs">
-            <input v-model="perfil.nascimento" placeholder="Qual é sua data de nascimento" type="date" required>
+            <input v-model="perfil.nascimento" type="date" required>
           </div>
-
+          <label for="perfil.endereco">Informe seu Endereço:</label>
           <div class="usuario-endereco above-inputs">
-            <input class="buttons-f1" v-model="perfil.endereco" placeholder="Qual o seu endereço?" required>
+            <input class="buttons-f1" v-model="perfil.endereco"  required>
+          </div>
+          <label for="perfil.cidade">Informe sua Cidade:</label>
+          <div class="usuario-city above-inputs">
+            <input v-model="perfil.cidade" type="text" required>
+          </div>
+          <label for="perfil.hobbies">Qual seu Hobbie:</label>
+          <div class="usuario-hobbies above-inputs">
+          <input v-model="perfil.hobbies" type="text" required>
           </div>
 
-          <div class="usuario-city above-inputs">
-            <input v-model="perfil.cidade" placeholder="Qual sua cidade?" type="text" required>
+          <label for="perfil.linguagem">Qual sua linguagem de programação:</label>
+          <div class="usuario-linguagem above-inputs">
+          <input v-model="perfil.linguagem" type="text" required>
           </div>
-          <div class="usuario-liguagem above-inputs">
-            <input v-model="perfil.linguagem" placeholder="Qual sua liguagem de programação?" type="text" required>
-          </div>
-          <div class="usuario-hobbies">
-            <input v-model="perfil.hobbies" placeholder="Qual seu hobbie?" type="text" required>
-          </div>
+
+          <label for="perfil.estado">Informe seu Estado</label>
           <div class="usuario-estados">
             <select v-model="perfil.estado">
               <option v-for="(value, index) of listaEstados" :key="index">{{ value.sigla
                 }}{{ value.nome }}</option>
             </select>
           </div>
+          <label for="perfil.biografia">Escreva sua Biografia</label>
           <div class="biografia-graphy">
-            <textarea v-model="perfil.biografia" nome="biografia" cols="40" rows="8" required>biografia</textarea>
+            <textarea v-model="perfil.biografia" nome="biografia" cols="40" rows="5" required>biografia</textarea>
           </div>
+          <button class="btn btn-white" @click="mostrarresultado= !mostrarresultado" >Enter</button>
         </div>
     </div>
     <section>
@@ -109,10 +122,10 @@ const mostrarresultado = ref(false)
         <p>biografia : {{ perfil.biografia }}</p>
         <p>Hobbies : {{ perfil.hobbies }}</p>
         <p>Cidade : {{ perfil.cidade }}</p>
-        <p>email : {{ perfil.email }}</p>
+        <button class="btn btn-white" @click="mostrarresultado= !mostrarresultado" >Voltar</button>
       </div>
     </section>
-    <button class="btn btn-white" @click="mostrarresultado= !mostrarresultado" >Perfil</button>
+  </div>
   </main>
 </template>
 
@@ -140,8 +153,9 @@ main {
 }
 
 .btn {
-  background-color: rgb(22, 12, 12);
+  background-color: rgb(68, 55, 55);
   color: white;
+  align-items: center;
 }
 
 .active {
@@ -155,7 +169,7 @@ main {
   padding: 20px;
   color: white;
   border: color(white);
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(68, 65, 65);
 }
 
 .resultado {
@@ -163,7 +177,7 @@ main {
   min-height: 70vh;
   border-radius: 20px;
   padding: 20px;
-  background-color: black;
+  background-color: rgb(68, 65, 65);
   color: white;
 }
 
@@ -189,12 +203,16 @@ usuario-estados select {
   display: flex;
   justify-content: center;  
   align-items: center;
-  background-color: black;
+  background-color: rgb(68, 65, 65);
   color: white;
 }
 
 ::placeholder{
   color: white;
+}
+
+label{
+  padding-top: 10px;
 }
 
 </style>
