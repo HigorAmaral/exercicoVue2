@@ -71,21 +71,32 @@ const mostrarresultado = ref(false)
           </div>
           <label for="confirmarsenha">Confirme sua senha:</label>
           <div class="usuario-verify-senha above-inputs">
-            <input v-model="confrimarsenha" type="password" required>
+            <input v-model="confirmarsenha" type="password" required>
             <p v-if="perfil.senha !== confrimarsenha">Incorreto!</p>
           </div>
           <label for="perfil.nascimento">Informe sua data de nascimento:</label>
           <div class="usuario-nascimento above-inputs">
             <input v-model="perfil.nascimento" type="date" required>
           </div>
-          <label for="perfil.endereco">Informe seu Endereço:</label>
-          <div class="usuario-endereco above-inputs">
-            <input class="buttons-f1" v-model="perfil.endereco"  required>
+
+          <label for="perfil.estado">Informe seu Estado</label>
+          <div class="usuario-estados">
+            <select v-model="perfil.estado">
+              <option v-for="(value, index) of listaEstados" :key="index">{{ value.sigla
+                }}{{ value.nome }}</option>
+            </select>
           </div>
+
           <label for="perfil.cidade">Informe sua Cidade:</label>
           <div class="usuario-city above-inputs">
             <input v-model="perfil.cidade" type="text" required>
           </div>
+
+          <label for="perfil.endereco">Informe seu Endereço:</label>
+          <div class="usuario-endereco above-inputs">
+            <input class="buttons-f1" v-model="perfil.endereco"  required>
+          </div>
+
           <label for="perfil.hobbies">Qual seu Hobbie:</label>
           <div class="usuario-hobbies above-inputs">
           <input v-model="perfil.hobbies" type="text" required>
@@ -96,33 +107,28 @@ const mostrarresultado = ref(false)
           <input v-model="perfil.linguagem" type="text" required>
           </div>
 
-          <label for="perfil.estado">Informe seu Estado</label>
-          <div class="usuario-estados">
-            <select v-model="perfil.estado">
-              <option v-for="(value, index) of listaEstados" :key="index">{{ value.sigla
-                }}{{ value.nome }}</option>
-            </select>
-          </div>
           <label for="perfil.biografia">Escreva sua Biografia</label>
           <div class="biografia-graphy">
             <textarea v-model="perfil.biografia" nome="biografia" cols="40" rows="5" required>biografia</textarea>
           </div>
-          <button class="btn btn-white" @click="mostrarresultado= !mostrarresultado" >Enter</button>
+          <button class="btn" @click="mostrarresultado= !mostrarresultado" >Enter</button>
         </div>
     </div>
     <section>
       <div v-if="mostrarresultado" class="resultado">
+        <div class="info-results">
         <h2>Dados do Usuario</h2>
         <p>Nome : {{ perfil.nome }}</p>
-        <p>email : {{ perfil.email }}</p>
-        <p>nascimento : {{ perfil.nascimento }}</p>
-        <p>endereço : {{ perfil.endereco }}</p>
+        <p>Email : {{ perfil.email }}</p>
+        <p>Nascimento : {{ perfil.nascimento }}</p>
         <p>Estado : {{ perfil.estado }}</p>
-        <p>Linguagem : {{ perfil.linguagem }}</p>
-        <p>biografia : {{ perfil.biografia }}</p>
-        <p>Hobbies : {{ perfil.hobbies }}</p>
         <p>Cidade : {{ perfil.cidade }}</p>
-        <button class="btn btn-white" @click="mostrarresultado= !mostrarresultado" >Voltar</button>
+        <p>Endereço : {{ perfil.endereco }}</p>
+        <p>Hobbies : {{ perfil.hobbies }}</p>
+        <p>Linguagem : {{ perfil.linguagem }}</p>
+        <p>Biografia : {{ perfil.biografia }}</p>
+      </div>
+        <button class="btn" @click="mostrarresultado= !mostrarresultado" >Voltar</button>
       </div>
     </section>
   </div>
@@ -146,6 +152,8 @@ main {
   align-items: center;
   display: flex;
   justify-content: center;
+  background-color: rgb(147, 60, 165);
+  min-height: 100vh;
 }
 
 .formulario {
@@ -153,9 +161,10 @@ main {
 }
 
 .btn {
-  background-color: rgb(68, 55, 55);
+  background-color: rgb(187, 116, 116);
   color: white;
   align-items: center;
+  width: 100px;
 }
 
 .active {
@@ -169,18 +178,31 @@ main {
   padding: 20px;
   color: white;
   border: color(white);
-  background-color: rgb(68, 65, 65);
+  background-color: rgb(192, 91, 91);
+
 }
 
-.resultado {
+.resultado{
   width: 45vw;
   min-height: 70vh;
   border-radius: 20px;
   padding: 20px;
-  background-color: rgb(68, 65, 65);
+  background-color: rgb(192, 91, 91);
   color: white;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }
 
+.info-results {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 60vh;
+  width: 100%;
+  justify-content: space-between;
+}
 .usuario-informações input,
 usuario-estados select {
   border-radius: 5px;
@@ -203,7 +225,7 @@ usuario-estados select {
   display: flex;
   justify-content: center;  
   align-items: center;
-  background-color: rgb(68, 65, 65);
+  background-color: rgb(192, 91, 91);
   color: white;
 }
 
@@ -215,4 +237,11 @@ label{
   padding-top: 10px;
 }
 
+h2{
+  text-align: center;
+}
+
+p{
+  padding: 3px;
+}
 </style>
